@@ -249,7 +249,7 @@ module Fluent
             accessor.delete(record)
           end
 
-          if @extract_kubernetes_labels && record.key?('kubernetes')
+          if @extract_kubernetes_labels && record.key?('kubernetes') && record['kubernetes'].key?('labels')
             kubernetes_labels = record['kubernetes']['labels']
             kubernetes_labels.each_key do |l|
               new_key = l.gsub(%r{[.\-\/]}, '_')
